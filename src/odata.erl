@@ -36,15 +36,15 @@ mk_query_endpoint(Host, Port, ServiceRoot, ResourcePath) ->
 
 %% Unicode URL escaping
 -spec url_escape(string()) -> iolist().
-url_escape([]) -> [];
-url_escape([C | R]) ->
-    case test_escape(C) of
-	true ->
-	    Bytes = [escape(B) || B <- unicode:characters_to_list([C])],
-	    [Bytes | url_escape(R)];
-	false ->
-	    [C | url_escape(R)]
-    end.
+url_escape(Str) ->
+    [begin
+	 case test_escape(C) of
+	     true ->
+		 [escape(B) || B <- unicode:characters_to_list([C])];
+	     false ->
+		 C
+	 end
+     end || C <- Str].
 
 %%====================================================================
 %% Internal functions
