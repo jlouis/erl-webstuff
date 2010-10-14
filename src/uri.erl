@@ -56,7 +56,7 @@ should_escape(C) when $A =< C andalso C =< $Z -> false;
 should_escape(C) when $a =< C andalso C =< $z -> false;
 should_escape(C) when $0 =< C andalso C =< $9 -> false;
 should_escape(C) when is_integer(C) ->
-    not lists:member(C, "+.-~").
+    not lists:member(C, "_.-~").
 
 hex(B) ->
     binary:sub(B, <<"0123456789abcdef">>).
