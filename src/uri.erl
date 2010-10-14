@@ -45,10 +45,32 @@ uri_to_string(Uri) ->
 query_to_iolist([]) ->
     "";
 query_to_iolist(L) ->
-    ["?", [[K, "=", V] || {K, V} <- L]].
+    ["?", [[percent_encode(K), "=", percent_encode(V)] || {K, V} <- L]].
 
 fragment_to_iolist(none) ->
     "";
 fragment_to_iolist(Frag) ->
-    ["#", Frag].
+    ["#", percent_encode(Frag)].
 
+should_escape(C) when $A =< C andalso C =< $Z -> false;
+should_escape(C) when $a =< C andalso C =< $z -> false;
+should_escape(C) when $0 =< C andalso C =< $9 -> false;
+should_escape(C) when is_integer(C) ->
+    not lists:member(C, "+.-~").
+
+hex(B) ->
+    binary:sub(B, <<"0123456789abcdef">>).
+
+hex_write(C) ->
+    Upper = C bsr 4,
+    Lower = C band 15,
+    [hex(Upper), hex(Lower)].
+
+percent_encode(Str) ->
+    [begin
+	 case should_escape(C) of
+	     false -> C;
+	     true when 0 =< C andalso C < 256 ->
+		 ["%", hex_write(C)]
+	 end
+     end || C <- Str].
