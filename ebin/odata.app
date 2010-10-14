@@ -5,4 +5,4 @@
               {applications,[kernel,stdlib]},
               {mod,{odata_app,[]}},
               {env,[]},
-              {modules,[odata,odata_app,odata_sup]}]}.
+              {modules,[odata,odata_app,odata_sup,uri]}]}.
