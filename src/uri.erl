@@ -8,7 +8,7 @@
 -module(uri).
 %% API
 -export([mk_uri/2, mk_uri/3, mk_uri/4,
-	 uri_to_iolist/1, uri_to_string/1]).
+	 to_iolist/1, to_string/1]).
 
 -record(hier,
 	{authority :: string() | none,
@@ -32,16 +32,16 @@ mk_uri(S,H,Q) ->
 mk_uri(S,H,Q,F) ->
     #uri{scheme = S, hier = H, q = Q, fragment = F}.
 
--spec uri_to_iolist(#uri{}) -> iolist().
-uri_to_iolist(#uri{scheme = S, hier = H, q = Q, fragment = F}) ->
+-spec to_iolist(#uri{}) -> iolist().
+to_iolist(#uri{scheme = S, hier = H, q = Q, fragment = F}) ->
     [atom_to_list(S),":",
      hier_to_iolist(H),
      query_to_iolist(Q),
      fragment_to_iolist(F)].
 
--spec uri_to_string(#uri{}) -> string().
-uri_to_string(Uri) ->
-    lists:flatten(uri_to_iolist(Uri)).
+-spec to_string(#uri{}) -> string().
+to_string(Uri) ->
+    lists:flatten(to_iolist(Uri)).
 
 %%====================================================================
 %% Internal functions
