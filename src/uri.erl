@@ -7,7 +7,8 @@
 %%%-------------------------------------------------------------------
 -module(uri).
 %% API
--export([mk_uri/2, mk_uri/3, mk_uri/4,
+-export([mk/2, mk/3, mk/4,
+	 mk_hier/2,
 	 to_iolist/1, to_string/1]).
 
 -record(hier,
@@ -23,14 +24,17 @@
 %%====================================================================
 %% API
 %%====================================================================
-mk_uri(S, H) ->
-    mk_uri(S,H,[],none).
+mk(S, H) ->
+    mk(S,H,[],none).
 
-mk_uri(S,H,Q) ->
-    mk_uri(S,H,Q,none).
+mk(S,H,Q) ->
+    mk(S,H,Q,none).
 
-mk_uri(S,H,Q,F) ->
+mk(S,H,Q,F) ->
     #uri{scheme = S, hier = H, q = Q, fragment = F}.
+
+mk_hier(A, P) ->
+    #hier{authority = A, path = P}.
 
 -spec to_iolist(#uri{}) -> iolist().
 to_iolist(#uri{scheme = S, hier = H, q = Q, fragment = F}) ->
