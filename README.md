@@ -11,6 +11,17 @@ entry for Erlang programs in companies and projects.
 *WE RECOMMEND CARE* when using the library in its current state. More
 work is needed.
 
+### TODO List
+
+   * Introduce and write down test cases
+   * Document conventions used
+   * Think about when and how to freeze a library
+
+## Contents
+
+   * uri.erl -- Manipulation of URIs (RFC3986)
+   * iri.erl -- Manipulation of IRIs (RFC3987)
+
 ## Goal
 
 The purpose here is to attempt an implementation. If it succeeds, it
