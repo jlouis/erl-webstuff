@@ -8,3 +8,6 @@ dialyzer:
 
 clean:
 	rebar clean
+
+run:
+	erl -pz ./ebin ./deps/ibrowse/ebin

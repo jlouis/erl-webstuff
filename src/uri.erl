@@ -6,20 +6,13 @@
 %%% Created : 14 Oct 2010 by Jesper Louis Andersen <jesper.louis.andersen@gmail.com>
 %%%-------------------------------------------------------------------
 -module(uri).
+
+-include("uri.hrl").
+
 %% API
 -export([mk/2, mk/3, mk/4,
 	 mk_hier/2,
 	 to_iolist/1, to_string/1]).
-
--record(hier,
-	{authority :: string() | none,
-	 path      :: string() | none}).
-
--record(uri,
-	{scheme :: atom(),
-	 hier :: #hier{},
-	 q :: [{string(), string()}],
-	 fragment :: string() | none}).
 
 %%====================================================================
 %% API

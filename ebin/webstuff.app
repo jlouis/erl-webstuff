@@ -8,4 +8,5 @@
               {env,[]},
               {modules,
 	        [odata,odata_app,odata_sup,
+		 atom,
 	         uri,iri]}]}.
