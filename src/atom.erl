@@ -17,7 +17,9 @@
 get_feed(Uri) when is_record(Uri, uri) ->
     get_feed(uri:to_string(Uri));
 get_feed(Uri) when is_list(Uri) ->
-    ibrowse:send_req(Uri, [], get).
+    %% Assume we get a result. No error handling yet
+    {ok, "200", _Headers, Body} = ibrowse:send_req(Uri, [], get),
+    xmerl_scan:string(Body).
 
 %%--------------------------------------------------------------------
 %% Function: 
