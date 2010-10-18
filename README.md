@@ -17,6 +17,9 @@ work is needed.
    * Document conventions used
    * Think about when and how to freeze a library
 
+
+   * Introduce an (un-)parser for ISO8601 / RFC3339
+
 ## Contents
 
    * uri.erl -- Manipulation of URIs (RFC3986)
