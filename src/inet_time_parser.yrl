@@ -1,9 +1,19 @@
-Nonterminals iso_date_time iso_date time
+Nonterminals iso_date_time date time
 	     time_hour time_minute time_second time_fraction time_numoffset
 	     direction numoffset_minute time_zone timeopt_hour timeopt_minute
-	     timespec_hour timespec_minute timespec_second timespec_base.
+	     timespec_hour timespec_minute timespec_second timespec_base
 
-Terminals integer comma dot plus minus mminus mmminus colon z t h m s.
+	     date_century date_decade date_subdecade date_year
+	     date_month date_wday date_mday date_yday date_week datepart_fullyear
+	     m_date_century m_minus datepart_ptyear m_date_subdecade
+	     datepart_wkyear dateopt_century dateopt_fullyear dateopt_year dateopt_month
+	     dateopt_week m_date_week m_date_month m_date_year datespec_year datespec_month
+	     datespec_wday datespec_week datespec_mday datespec_week_2 datespec_yday datespec_full.
+
+% Nonterminals not in use: date_fullyear
+% Terminals not in use: h m s
+
+Terminals integer comma dot plus minus mminus mmminus colon z t w.
 
 Rootsymbol iso_date_time.
 
@@ -56,7 +66,7 @@ date_decade  -> integer : $1.
 date_subdecade -> integer : $1.
 
 date_year -> date_decade date_subdecade.
-date_fullyear -> date_century date_year.
+%date_fullyear -> date_century date_year.
 
 date_month -> integer : $1.
 date_wday -> integer : $1.
@@ -101,8 +111,8 @@ m_date_month -> date_month minus :$1.
 m_date_year -> date_year : $1.
 m_date_year -> date_year minus : $1.
 
-datespec_full -> datepart_fullyear date-month minus date_mday.
-datespec_full -> datepart_fullyear date-month date_mday.
+datespec_full -> datepart_fullyear date_month minus date_mday.
+datespec_full -> datepart_fullyear date_month date_mday.
 
 datespec_year -> date_century.
 datespec_year -> dateopt_century date_year.
