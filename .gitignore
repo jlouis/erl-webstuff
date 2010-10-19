@@ -1,2 +1,3 @@
 *.beam
 deps
+/src/inet_time_scanner.erl
