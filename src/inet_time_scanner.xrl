@@ -6,24 +6,26 @@ ALPHA = [A-Z]
 
 Rules.
 
-DIGIT+ :
+{DIGIT}+ :
        {token,{integer,TokenLine,list_to_integer(TokenChars)}}.
 
-(,)   : {token, comma}.
-(.)   : {token, dot}.
-(\+)  : {token, '+'}.
-(-)   : {token, '-'}.
+(,)   : {token, {comma, TokenLine, ','}}.
+(\.)   : {token, {'.', TokenLine, '.'}}.
+(\+)  : {token, {'+', TokenLine, '+'}}.
+(-)   : {token, {'-', TokenLine, '-'}}.
 (--)  : {token, mminus}.
 (---) : {token, mmminus}.
-(:)   : {token, colon}.
-ALPHA : {token, case TokenChars of
-      	           $Z -> 'Z';
-		   $z -> 'Z';
-		   $T -> 'T';
-		   $t -> 'T';
-		   $H -> 'H';
-		   $M -> 'M';
-		   $S -> 'S' end}.
+(:)   : {token, {':', TokenLine, ':'}}.
+{ALPHA} : {token, {case TokenChars of
+      	           "Z" -> 'Z';
+		   "z" -> 'Z';
+		   "T" -> 'T';
+		   "t" -> 'T';
+		   "h" -> 'H';
+		   "m" -> 'M';
+		   "s" -> 'S';
+		   _   -> unknown
+		 end, TokenLine, dummy}}.
 
 Erlang code.
 
