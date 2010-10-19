@@ -16,7 +16,12 @@ DIGIT+ :
 (--)  : {token, mminus}.
 (---) : {token, mmminus}.
 (:)   : {token, colon}.
-ALPHA : {token, {alpha, TokenLine, TokenChars}}.
+ALPHA : {token, case TokenChars of
+      	           $Z -> z;
+		   $T -> t;
+		   $H -> h;
+		   $M -> m;
+		   $S -> s end}.
 
 Erlang code.
 

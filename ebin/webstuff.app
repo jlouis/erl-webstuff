@@ -9,5 +9,5 @@
               {modules,
 	        [odata,odata_app,odata_sup,
 		 atom,
-		 inet_time_scanner, inet_time,
+		 inet_time_scanner, inet_time_parser, inet_time,
 	         uri,iri]}]}.
