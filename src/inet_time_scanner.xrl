@@ -11,17 +11,19 @@ DIGIT+ :
 
 (,)   : {token, comma}.
 (.)   : {token, dot}.
-(\+)  : {token, plus}.
-(-)   : {token, minus}.
+(\+)  : {token, '+'}.
+(-)   : {token, '-'}.
 (--)  : {token, mminus}.
 (---) : {token, mmminus}.
 (:)   : {token, colon}.
 ALPHA : {token, case TokenChars of
-      	           $Z -> z;
-		   $T -> t;
-		   $H -> h;
-		   $M -> m;
-		   $S -> s end}.
+      	           $Z -> 'Z';
+		   $z -> 'Z';
+		   $T -> 'T';
+		   $t -> 'T';
+		   $H -> 'H';
+		   $M -> 'M';
+		   $S -> 'S' end}.
 
 Erlang code.
 
