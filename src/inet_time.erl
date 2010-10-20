@@ -8,7 +8,8 @@
 -module(inet_time).
 
 %% API
--export([parse/1]).
+-export([parse/1,
+	 to_string/2, to_string/3]).
 
 %%====================================================================
 %% API
@@ -38,6 +39,20 @@ parse(String) ->
 	false ->
 	    {error, {invalid_date, {Date, Time, Offset}}}
     end.
+
+to_string(Date, Time) ->
+    to_string(Date, Time, 'Z').
+
+to_string({Year, Month, Day}, {Hour, Minute, Second}, Offset) ->
+    OffStr = case Offset of
+		 'Z' -> "Z";
+		 {Dir, H, M} ->
+		     io_lib:format("~s~2.10.0B:~2.10.0B",
+				   [case Dir of '+' -> "+"; '-' -> "-" end,
+				    H, M])
+	     end,
+    io_lib:format("~4.10.0B-~2.10.0B-~2.10.0BT~2.10.0B:~2.10.0B:~2.10.0B~s",
+		  [Year, Month, Day, Hour, Minute, Second, OffStr]).
 
 %%====================================================================
 %% Internal functions
