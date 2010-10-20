@@ -9,7 +9,7 @@ dialyzer:
 clean:
 	rebar clean
 
-eunit:
+eunit: all
 	rebar eunit
 
 run:
