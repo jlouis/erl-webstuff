@@ -1,4 +1,4 @@
-.PHONY: all dialyzer clean
+.PHONY: all dialyzer clean eunit run
 
 all:
 	rebar compile
@@ -8,6 +8,9 @@ dialyzer:
 
 clean:
 	rebar clean
+
+eunit:
+	rebar eunit
 
 run:
 	erl -pz ./ebin ./deps/ibrowse/ebin
