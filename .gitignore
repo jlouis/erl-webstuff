@@ -4,3 +4,4 @@ deps
 /src/inet_time_parser.erl
 /src/inet_time_parser_simple.erl
 /.eunit
+/doc
