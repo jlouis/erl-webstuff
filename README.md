@@ -24,6 +24,7 @@ work is needed.
 
    * uri.erl -- Manipulation of URIs (RFC3986)
    * iri.erl -- Manipulation of IRIs (RFC3987)
+   * inet_time.erl -- "Internet time" manipulation (RFC3339)
 
 ## Goal
 
@@ -41,6 +42,6 @@ specific encoding of, say, URIs you should be able to find that in
 this library along with the usual operations for manipulation.
 
 In addition to providing the toolbox, we have a mantra that each
-library here should be dogfooded. Some application with the use of the
-library is preferred because it tends to weed out bad design decisions
-easily.
+library here should be dogfooded. We prefer a real-world practical
+application as an API test - because it tends to weed out bad design
+decisions easily.
