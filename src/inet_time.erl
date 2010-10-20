@@ -63,6 +63,7 @@ valid_time_offset(Time, Offset) ->
 	{error, Reason} -> {error, Reason}
     end.
 
+valid_offset('Z') -> ok;
 valid_offset({_, H, M}) when
       0 =< H,
       H =< 23,
