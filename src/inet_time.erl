@@ -17,7 +17,14 @@
 -type time() :: {integer(), integer(), integer(), integer()}.
 -type offset() :: {'+' | '-', integer(), integer()}.
 
--spec parse(string()) -> {date(), time(), offset()}.
+% @doc parse an RFC3339 "Internet Time" (ISO8601-subset) value.
+%  Take the input string and regard it as an RFC3339 value. Parse it
+%  into its components, and return these for further processing. The
+%  function will return either {ok, Components} or {error, Reason} if
+%  the parse is wrong or if the date can not be validated.
+% @end
+-spec parse(string()) ->
+		   {ok, {date(), time(), offset()}} | {error, term()}.
 parse(String) ->
     {ok, Tokens, _} = inet_time_scanner:string(String),
     {ok, {Date, {Time, Offset}}} = inet_time_parser_simple:parse(Tokens),
