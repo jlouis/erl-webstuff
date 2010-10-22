@@ -43,7 +43,9 @@ parse(String) ->
 to_string(Date, Time) ->
     to_string(Date, Time, 'Z').
 
-to_string({Year, Month, Day}, {Hour, Minute, Second}, Offset) ->
+to_string(Date, {Hour, Minute, Second}, Offset) ->
+    to_string(Date, {Hour, Minute, Second, none}, Offset);
+to_string({Year, Month, Day}, {Hour, Minute, Second, Frac}, Offset) ->
     OffStr = case Offset of
 		 'Z' -> "Z";
 		 {Dir, H, M} ->
@@ -51,8 +53,12 @@ to_string({Year, Month, Day}, {Hour, Minute, Second}, Offset) ->
 				   [case Dir of '+' -> "+"; '-' -> "-" end,
 				    H, M])
 	     end,
-    io_lib:format("~4.10.0B-~2.10.0B-~2.10.0BT~2.10.0B:~2.10.0B:~2.10.0B~s",
-		  [Year, Month, Day, Hour, Minute, Second, OffStr]).
+    FracStr = case Frac of
+		  none -> "";
+		  I when is_integer(I) -> io_lib:format(".~B", [I])
+	      end,
+    io_lib:format("~4.10.0B-~2.10.0B-~2.10.0BT~2.10.0B:~2.10.0B:~2.10.0B~s~s",
+		  [Year, Month, Day, Hour, Minute, Second, FracStr, OffStr]).
 
 %%====================================================================
 %% Internal functions
